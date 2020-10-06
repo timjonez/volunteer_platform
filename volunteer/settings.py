@@ -23,6 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'o3wl+o4dqf_2nf4%5h(u7^7$f6)!nvs0_d66yx&!a1s562szm)'
 
 AUTH_USER_MODEL = 'user.User'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
