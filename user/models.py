@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 from .managers import CustomUserManager
 
-WORKER = ''
-CHURCH = ''
+WORKER = 'Volunteer'
+CHURCH = 'Church'
 ROLE = [
     (WORKER, 'Volunteer'),
     (CHURCH, 'Church'),
