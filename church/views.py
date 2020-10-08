@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 from .forms import AddChurchForm
 from .models import Church
 
 
+@login_required
 def create_church_view(request):
     existing_churches = Church.objects.filter(user_id__email=request.user)
     if len(existing_churches) != 0:
