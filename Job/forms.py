@@ -6,4 +6,4 @@ class CreateJobForm(forms.ModelForm):
 
     class Meta:
         model = Job
-        exclude = ['church',]
+        exclude = ['church', 'slug',]
