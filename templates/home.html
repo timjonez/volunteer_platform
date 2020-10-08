@@ -3,18 +3,20 @@
 {% block body %}
 <div class="container">
     <div class="col-8 mx-auto">
-        <h1>Home Page</h1>
-        <form method="GET" action="/search">
-            <input type="search" placeholder="Search" name='searchterm'>
-            <select name="category" id="">
+        <h1 class="text-center mt-2 mb-4">Find Volunteer Tasks</h1>
+        <form method="GET" action="/search" class="mx-auto col-lg-10 col-12">
+            <input type="search" placeholder="Search" name='searchterm' id="input-box">
+            <select name="category" id="dropdown-box">
                 <option value="all" selected>All Categories</option>
                 {% for category in categories %}
                     <option value="{{ category.category_item }}">{{ category.category_item }}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Search</button>
+            <button type="submit" id="input-button">
+                <i class="fas fa-search"></i>
+            </button>
         </form>
-        <div class="list-all-box">
+        <div class="list-all-box mt-4">
             {% for job in object_list %}
                 <a href="{{ job.get_absolute_url }}" class="job-link">
                     <div>
