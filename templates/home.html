@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>Home Page</h1>
+<div class="container">
+    <div class="col-8 mx-auto">
+        <h1>Home Page</h1>
+        <div class="list-all-box">
+            {% for job in object_list %}
+                <a href="#" class="job-link">
+                    <div>
+                        <h1>{{job.title}}</h1>
+                        <p>{{job.body}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}
