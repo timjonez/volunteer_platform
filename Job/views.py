@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
+from django.contrib.auth.decorators import login_required
 
 from church.models import Church
 from .models import Job
 from .forms import CreateJobForm
 
 
+@login_required
 def create_job_view(request):
     church = Church.objects.filter(user_id__email=request.user)
     if len(church) != 1:
