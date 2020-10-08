@@ -21,3 +21,6 @@ class Job(models.Model):
     body = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return 'By ' + self.church.name +': '+ self.title
+
