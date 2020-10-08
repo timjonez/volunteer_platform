@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
 
 from church.models import Church
@@ -22,3 +22,7 @@ def create_job_view(request):
             job.save()
             return redirect('home')
     return render(request, 'Job/add_job.html', {'form': form,})
+
+
+class JobDetailView(DetailView):
+    model = Job
