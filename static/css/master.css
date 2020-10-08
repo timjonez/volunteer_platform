@@ -25,3 +25,34 @@ body, html{
     background-color: rgba(242, 242, 242, .2) !important;
     color: black;
 }
+
+#dropdown-box{
+    border: 2px solid rgba(55, 160, 0, .5);
+    border-left: unset;
+    border-right: unset;
+    margin-left: -5px;
+    margin-right: -3px;
+    background-color: white;
+    height: 35px;
+    width: 40%;
+}
+
+#input-box{
+    border: 2px solid rgba(55, 160, 0, .5);
+    border-right: 2px solid rgba(55, 160, 0, .5);
+    height: 35px;
+    width: 50%;
+}
+
+#input-button{
+    border: 1px solid gray;
+    background-color: #37A000;
+    color: white;
+    height: 35px;
+    width: 10%;
+    margin: unset;
+    margin-left: -1px;
+    padding: 5px;
+}
+
+#dropdown-box, #input-box, #input-box:focus{outline: unset;}
