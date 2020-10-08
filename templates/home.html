@@ -6,7 +6,7 @@
         <h1>Home Page</h1>
         <div class="list-all-box">
             {% for job in object_list %}
-                <a href="#" class="job-link">
+                <a href="{{ job.get_absolute_url }}" class="job-link">
                     <div>
                         <h1>{{job.title}}</h1>
                         <p>{{job.body}}</p>
