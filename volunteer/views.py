@@ -1,5 +1,7 @@
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from Job.models import Job
 
 
-class HomeView(TemplateView):
+class HomeView(ListView):
+    model = Job
     template_name = 'home.html'
