@@ -1,8 +1,27 @@
 body, html{
     font-family: 'Playfair Display', serif;
+    background-color: #F2F2F2;
 }
 
 .alt-brand{
     font-family: 'Lobster', cursive;
     color: #6FDA44;
+}
+
+.list-all-box{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.job-link{
+    display: block;
+    color: black;
+    background-color: white !important;
+    border-bottom: 1.5px solid #e6e6e6;
+    padding: 20px;
+}
+
+.job-link:hover{
+    text-decoration: none;
+    background-color: rgba(242, 242, 242, .2) !important;
+    color: black;
 }
