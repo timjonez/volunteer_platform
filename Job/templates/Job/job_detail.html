@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body %}
-    <h1>{{ job.title }}</h1>
-    <p>{{job.body}}</p>
+    <div class="container">
+        <h1 class="my-2">Task Details</h1>
+        <div class="job-container row">
+            <div class="col-8 pt-3">
+                <h1>{{ job.title }}</h1>
+                <h5 class="category-item">{{ job.category }}</h5>
+                {% if listed_days_ago > 1 %}
+                    <h6>Listed {{listed_days_ago}} days ago</h6>
+                {% elif listed_days_ago == 1 %}
+                    <h6>Listed yesterday</h6>
+                {% else %}
+                    <h6>Listed today</h6>
+                {% endif %}
+                <p>{{job.body}}</p>
+            </div>
+            <div class="about col-4 pt-3">
+                <h4 class="text-center">{{ job.church.name }}</h4>
+                <img src="{{ job.church.picture.url }}" width="100px" alt="">
+            </div>
+        </div>
+    </div>
 {% endblock %}
