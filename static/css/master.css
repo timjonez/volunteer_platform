@@ -69,6 +69,10 @@ body, html{
     display: inline;
 }
 
+.job-body{
+    border-top: 2px solid #F2F2F2; 
+}
+
 .about{
     border-left: 2px solid #F2F2F2;
 }
