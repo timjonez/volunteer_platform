@@ -15,6 +15,7 @@
                 {% else %}
                     <h6>Listed today</h6>
                 {% endif %}
+                <h6><b>Project Type: </b>{{ job.get_duration_display }}</h6>
                 <p>{{job.body}}</p>
             </div>
             <div class="about col-4 pt-3">
