@@ -23,8 +23,21 @@
                 </div>
             </div>
             <div class="about col-4 pt-3">
-                <h4 class="text-center">{{ job.church.name }}</h4>
-                <img src="{{ job.church.picture.url }}" width="100px" alt="">
+                <div class="p-4">
+                    <button class="btn btn-success btn-block" >Submit Proposal</button>
+                    <button class="btn btn-success btn-block" >Save Task</button>
+                </div>
+                <div class="mt-5" >
+                    <h2 class="text-center">About</h2>
+                    <h4>{{ job.church.name }}</h4>
+                    <h6>Pastor: {{ job.church.pastor_name }}</h6>
+                    <h6>{{ job.church.phone }}</h6>
+                    <h6>{{ job.church.address.street_number }} {{ job.church.address.route }}</h6>
+                    <h6>{{ job.church.address.locality.name }}, {{ job.church.address.locality.state.name }}, {{ job.church.address.locality.postal_code }}</h6>
+                    <div class="p-4">
+                        <img src="{{ job.church.picture.url }}" width="100%" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
