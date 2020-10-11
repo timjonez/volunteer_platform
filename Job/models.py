@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.urls import reverse
 
 from church.models import Church
+from user.models import Volunteer
 
 class Category(models.Model):
     category_item = models.CharField(max_length=100, help_text='Category')
@@ -34,3 +35,17 @@ class Job(models.Model):
     def get_absolute_url(self):
         return 'jobs/' + self.slug
 
+
+TIMEFRAME = (
+    (1, 'Less than 1 week'),
+    (2, 'Less than 1 month'),
+    (3, '1 to 3 months'),
+    (4, 'More than 3 months'),
+)
+
+class Proposal(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    user = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
+    timeframe = models.CharField(max_length=20, choices=TIMEFRAME, default=1)
+    body = models.TextField()
+    files = models.FileField(upload_to='attachments/', blank=True, null=True)
