@@ -5,7 +5,8 @@ from datetime import datetime, timedelta
 
 from church.models import Church
 from .models import Job
-from .forms import CreateJobForm
+from .forms import CreateJobForm, CreateProposalForm
+from user.models import Volunteer
 
 
 @login_required
@@ -23,6 +24,25 @@ def create_job_view(request):
             job.save()
             return redirect('home')
     return render(request, 'Job/add_job.html', {'form': form,})
+
+
+@login_required
+def create_proposal_view(request, slug):
+    user = Volunteer.objects.filter(user_id__email=request.user)
+    job = Job.objects.filter(slug=slug)
+    if user[0].user.role ==  'Church':
+        return redirect('home')
+    elif request.method == 'GET':
+        form = CreateProposalForm
+    else:
+        form = CreateProposalForm(request.POST)
+        if form.is_valid():
+            proposal = form.save(commit=False)
+            proposal.user = user[0]
+            proposal.job = job[0]
+            proposal.save()
+            return redirect('home')
+    return render(request, 'Job/add_proposal.html', {'form': form})
 
 
 class JobDetailView(DetailView):
