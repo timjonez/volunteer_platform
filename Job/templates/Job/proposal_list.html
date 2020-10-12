@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block body %}
+    <div class="container row mx-auto">
+        <div class="col-12 col-lg-8 shadow-container mx-auto py-4 px-0 mt-5 mb-3"> 
+            {% for proposal in object_list %}
+                <div class="job-link">
+                    <h4>{{proposal.job.title }}</h4>
+                    <h6>{{proposal.job.church }}</h6>
+                    <h6>{{proposal.timeframe }}</h6>
+                    {% if proposal.accepted == None %}
+                        <h5>Waiting</h5>
+                    {% elif proposal.accepted %}
+                        <h5>Accepted!</h5>
+                    {% else %}
+                        <h5>Rejected</h5>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
