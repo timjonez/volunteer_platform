@@ -37,15 +37,18 @@ class Job(models.Model):
 
 
 TIMEFRAME = (
-    (1, 'Less than 1 week'),
-    (2, 'Less than 1 month'),
-    (3, '1 to 3 months'),
-    (4, 'More than 3 months'),
+    ('One week', 'Less than 1 week'),
+    ('One month', 'Less than 1 month'),
+    ('three months', '1 to 3 months'),
+    ('three and up', 'More than 3 months'),
 )
 
 class Proposal(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     user = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
-    timeframe = models.CharField(max_length=20, choices=TIMEFRAME, default=1)
+    timeframe = models.CharField(max_length=20, choices=TIMEFRAME, default='One week')
     body = models.TextField()
     files = models.FileField(upload_to='attachments/', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.user.user.email) + ' + ' + str(self.job)
