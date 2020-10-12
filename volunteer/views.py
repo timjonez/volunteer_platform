@@ -21,11 +21,10 @@ def home_view(request):
             volunteer = Volunteer.objects.filter(user_id__email=user.email)
             if len(volunteer) == 0:
                 return redirect('user:volunteer')
-        else:
-            context = {
+        context = {
             'object_list':Job.objects.all(),
             'categories': Category.objects.all()
-        }
+            }
 
 
     return render(request, 'home.html', context)
