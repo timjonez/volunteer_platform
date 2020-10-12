@@ -25,6 +25,18 @@
           </ul>
           <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
+                {% if user.role == "Church" %}
+                  <li class="nav-item"></li>
+                    <a class="nav-link" href="{% url 'job:create_job'%}">Create Task</a>
+                  </li>
+                {% elif user.role == "Volunteer" %}
+                  <li class="nav-item"></li>
+                      <a class="nav-link" href="#">Saved Tasks</a>
+                  </li>
+                  <li class="nav-item"></li>
+                      <a class="nav-link" href="{% url 'job:proposals' %}">My Proposals</a>
+                  </li>
+                {% endif%}
                 <li class="nav-item"></li>
                     <a class="nav-link" href="/user/logout/">Logout</a>
                 </li>
