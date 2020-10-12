@@ -46,9 +46,11 @@ TIMEFRAME = (
 class Proposal(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     user = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
+    date_submitted = models.DateField(auto_now_add=True)
     timeframe = models.CharField(max_length=20, choices=TIMEFRAME, default='One week')
     body = models.TextField()
     files = models.FileField(upload_to='attachments/', blank=True, null=True)
+    accepted = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return str(self.user.user.email) + ' + ' + str(self.job)
