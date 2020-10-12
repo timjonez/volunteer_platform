@@ -34,5 +34,5 @@ class Volunteer(models.Model):
     address = AddressField(on_delete=models.CASCADE,)
 
     def __str__(self):
-        return self.user
+        return self.user.email
 
