@@ -13,4 +13,4 @@ class CreateProposalForm(forms.ModelForm):
 
     class Meta:
         model = Proposal
-        exclude = ['user', 'job',]
+        exclude = ['user', 'job', 'accepted',]
