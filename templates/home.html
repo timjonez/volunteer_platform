@@ -23,7 +23,7 @@
                 </div>
             {% endif %}
             {% for job in object_list %}
-                <a href="{{ job.get_absolute_url }}" class="job-link">
+                <a href="{% url 'job:view_job' slug=job.slug%}" class="job-link">
                     <div>
                         <h1>{{job.title}}</h1>
                         <p>{{job.body}}</p>
