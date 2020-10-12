@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 
 from church.models import Church
-from .models import Job
+from .models import Job, Proposal
 from .forms import CreateJobForm, CreateProposalForm
 from user.models import Volunteer
 
@@ -55,3 +55,7 @@ class JobDetailView(DetailView):
         days_ago = today - created_date.date()
         context['listed_days_ago'] = days_ago.days
         return context
+
+
+class ProposalListView(ListView):
+    model = Proposal
