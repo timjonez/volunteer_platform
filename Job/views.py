@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
+from django.http import HttpResponseRedirect
 
 from church.models import Church
-from .models import Job, Proposal
+from .models import Job, Proposal, SavedJob
 from .forms import CreateJobForm, CreateProposalForm
 from user.models import Volunteer
 
@@ -59,3 +60,16 @@ class JobDetailView(DetailView):
 
 class ProposalListView(ListView):
     model = Proposal
+
+
+class SavedJobListView(ListView):
+    model = SavedJob
+
+
+def save_job_view(request, slug):
+    user = Volunteer.objects.get(user_id__email=request.user)
+    job = Job.objects.get(slug=slug)
+    saved_job = SavedJob(user=user, job=job)
+    saved_job.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
