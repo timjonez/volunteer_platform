@@ -54,3 +54,15 @@ class Proposal(models.Model):
 
     def __str__(self):
         return str(self.user.user.email) + ' + ' + str(self.job)
+
+
+class SavedJob(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    user = models.ForeignKey(Volunteer, on_delete=models.CASCADE)
+    date_saved = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    unique_together = ['job', 'user',]
+
+    def __str__(self):
+        return self.job.title
