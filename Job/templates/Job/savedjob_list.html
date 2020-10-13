@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block body %}
+    <div class="container row mx-auto">
+        <div class="col-12 col-lg-8 shadow-container mx-auto py-4 px-0 mt-5 mb-3"> 
+            {% for job in object_list %}
+                <div class="job-link">
+                    <h4>{{job.job.title }}</h4>
+                    <h6>{{job.job.church }}</h6>
+                    <h6>{{job.date_created }}</h6>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
