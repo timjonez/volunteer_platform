@@ -58,8 +58,10 @@ class JobDetailView(DetailView):
         return context
 
 
-class ProposalListView(ListView):
-    model = Proposal
+def proposal_list_view(request):
+    user = Volunteer.objects.get(user_id__email=request.user)
+    proposals = Proposal.objects.filter(user=user)
+    return render(request, 'Job/proposal_list.html', {'object_list': proposals})
 
 
 class SavedJobListView(ListView):
