@@ -4,14 +4,22 @@
 
 {% block body %}
     <div class="container row mx-auto">
-        <div class="col-12 col-lg-8 shadow-container mx-auto py-4 px-0 mt-5 mb-3"> 
+        <div class="col-12 col-lg-8 shadow-container mx-auto px-0 mt-5"> 
             {% for job in object_list %}
-                <div class="job-link">
-                    <h4>{{job.job.title }}</h4>
-                    <h6>{{job.job.church }}</h6>
-                    <h6>{{job.date_created }}</h6>
+                <div class="normal-list row mx-auto">
+                    <div class="col-10">
+                        <a href="{% url 'job:view_job' slug=job.job.slug%}" class="link">
+                            <h4>{{job.job.title }}</h4>
+                        </a>
+                        <h6>{{job.job.church }}</h6>
+                        <h6>{{job.date_created }}</h6>
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="{% url 'job:delete-savedjob' pk=job.pk %}" class="btn btn-danger">Delete</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
+        <div class="mb-3"></div>
     </div>
 {% endblock %}
