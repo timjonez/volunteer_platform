@@ -12,8 +12,13 @@
                     <h5>Submitted on: {{proposal.date_submitted}}</h5>
                 </div>
                 <div class="col-lg-2 col-10 mx-auto my-auto">
-                    <a href="#" class="btn btn-danger btn-block mb-1">Refuse</a>
-                    <a href="#" class="btn btn-success btn-block">Accept</a>
+                        {% if user.role == "Church" %}
+                            <a href="#" class="btn btn-danger btn-block mb-1">Refuse</a>
+                            <a href="#" class="btn btn-success btn-block">Accept</a>
+                        {% else %}
+                            <a href="#" class="btn btn-warning btn-block mb-1">Edit</a>
+                            <a href="{% url 'job:delete-proposal' pk=proposal.pk %}" class="btn btn-danger btn-block">Delete</a>
+                        {% endif %} 
                 </div>
             </div>
             <h3 class="text-center">Proposal</h3>
