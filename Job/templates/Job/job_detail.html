@@ -24,10 +24,24 @@
             </div>
             <div class="about col-4 pt-3">
                 <div class="p-4">
-                    <a href="{% url 'job:create_proposal' slug=job.slug %}" class="btn btn-success btn-block" >Submit Proposal</a>
-                    <form action="{% url 'job:save-job' slug=job.slug %}">
-                        <button type="submit" class="btn btn-success btn-block">Save Task</button>
-                    </form>
+                    {% if user.is_authenticated %}
+                        {% if user.role == "Church" %}
+                            <a href="{% url 'job:create_proposal' slug=job.slug %}" class="btn btn-success btn-block mb-1" >See Proposals</a>
+                            <form action="#">
+                                <button type="submit" class="btn btn-danger btn-block">Delete Task</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'job:create_proposal' slug=job.slug %}" class="btn btn-success btn-block mb-1" >Submit Proposal</a>
+                            <form action="{% url 'job:save-job' slug=job.slug %}">
+                                <button type="submit" class="btn btn-success btn-block">Save Task</button>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'job:create_proposal' slug=job.slug %}" class="btn btn-success btn-block mb-1" >Submit Proposal</a>
+                        <form action="{% url 'job:save-job' slug=job.slug %}">
+                            <button type="submit" class="btn btn-success btn-block">Save Task</button>
+                        </form>  
+                    {% endif %}
                 </div>
                 <div class="mt-5" >
                     <h2 class="text-center">About</h2>
