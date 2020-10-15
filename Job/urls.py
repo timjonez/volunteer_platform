@@ -7,6 +7,7 @@ urlpatterns = [
     path('create-proposal/<slug:slug>/', views.create_proposal_view, name='create_proposal'),
     path('create_job/', views.create_job_view, name='create_job'),
     path('proposals/', views.proposal_list_view, name='proposals'),
+    path('<slug:slug>/proposals/', views.proposal_by_job_list_view, name='proposals-by-job'),
     path('delete/<pk>/', views.proposal_delete_view, name='delete-proposal'),
     path('proposal-<pk>/', views.ProposalDetailView.as_view(), name='proposal'),
     path('saved/', views.saved_job_list_view, name='saved-jobs'),
