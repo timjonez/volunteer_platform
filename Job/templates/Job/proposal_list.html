@@ -4,19 +4,26 @@
 
 {% block body %}
     <div class="container row mx-auto">
-        <div class="col-12 col-lg-8 shadow-container mx-auto py-4 px-0 mt-5 mb-3"> 
+        <div class="col-12 col-lg-8 shadow-container mx-auto px-0 mt-5 mb-3">
             {% for proposal in object_list %}
-                <div class="job-link">
-                    <h4>{{proposal.job.title }}</h4>
-                    <h6>{{proposal.job.church }}</h6>
-                    <h6>{{proposal.timeframe }}</h6>
-                    {% if proposal.accepted == None %}
-                        <h5>Waiting</h5>
-                    {% elif proposal.accepted %}
-                        <h5>Accepted!</h5>
-                    {% else %}
-                        <h5>Rejected</h5>
-                    {% endif %}
+                <div class="normal-list row mx-auto">
+                    <div class="col-10">
+                        <a href="{% url 'job:view_job' slug=proposal.job.slug%}" class="link">
+                            <h4>{{proposal.job.title }}</h4>
+                        </a>
+                        <h6>{{proposal.job.church }}</h6>
+                        <h6>{{proposal.timeframe }}</h6>
+                        {% if proposal.accepted == None %}
+                            <h5>Waiting</h5>
+                        {% elif proposal.accepted %}
+                            <h5>Accepted!</h5>
+                        {% else %}
+                            <h5>Rejected</h5>
+                        {% endif %}
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="{% url 'job:delete-proposal' pk=proposal.pk %}" class="btn btn-danger">Delete</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
