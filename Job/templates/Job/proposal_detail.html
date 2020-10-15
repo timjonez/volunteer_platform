@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="job-container">
+            <div class="row mx-auto pt-4">
+                <div class="col-lg-8 col-10 mx-auto">
+                    <h4>{{proposal.job.title}}</h4>
+                    <h5>{{proposal.user.user.first_name}} {{proposal.user.user.last_name}}</h5>
+                    <h5>Expected timeframe: {{proposal.timeframe }}</h5>
+                    <h5>Submitted on: {{proposal.date_submitted}}</h5>
+                </div>
+                <div class="col-lg-2 col-10 mx-auto my-auto">
+                    <a href="#" class="btn btn-danger btn-block mb-1">Refuse</a>
+                    <a href="#" class="btn btn-success btn-block">Accept</a>
+                </div>
+            </div>
+            <h3 class="text-center">Proposal</h3>
+            <div class="mx-5 my-3 pb-5">
+                <p>{{ proposal.body }}</p>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
