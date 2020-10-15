@@ -58,6 +58,10 @@ class JobDetailView(DetailView):
         return context
 
 
+class ProposalDetailView(DetailView):
+    model = Proposal
+
+
 def proposal_list_view(request):
     user = Volunteer.objects.get(user_id__email=request.user)
     proposals = Proposal.objects.filter(user=user)
