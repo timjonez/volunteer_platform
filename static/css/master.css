@@ -8,6 +8,11 @@ body, html{
     color: #6FDA44;
 }
 
+.link:hover{text-decoration: none;}
+.link{
+    color: black;
+}
+
 .list-all-box{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -80,4 +85,11 @@ body, html{
 .shadow-container{
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.normal-list{
+    max-width: 100%;
+    padding: 10px;
+    padding-top: 20px;
+    border-bottom: 1.5px solid #e6e6e6;
 }
