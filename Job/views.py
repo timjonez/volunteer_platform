@@ -64,8 +64,10 @@ def proposal_list_view(request):
     return render(request, 'Job/proposal_list.html', {'object_list': proposals})
 
 
-class SavedJobListView(ListView):
-    model = SavedJob
+def saved_job_list_view(request):
+    user = Volunteer.objects.get(user_id__email=request.user)
+    jobs = SavedJob.objects.filter(user=user)
+    return render(request, 'Job/savedjob_list.html', {'object_list': jobs})
 
 
 def save_job_view(request, slug):
