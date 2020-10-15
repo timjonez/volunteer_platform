@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 from django.http import HttpResponseRedirect
@@ -62,6 +62,18 @@ def proposal_list_view(request):
     user = Volunteer.objects.get(user_id__email=request.user)
     proposals = Proposal.objects.filter(user=user)
     return render(request, 'Job/proposal_list.html', {'object_list': proposals})
+
+
+def proposal_delete_view(request, pk):
+    proposal = Proposal.objects.get(pk=pk)
+    proposal.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def savedjob_delete_view(request, pk):
+    job = SavedJob.objects.get(pk=pk)
+    job.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def saved_job_list_view(request):
