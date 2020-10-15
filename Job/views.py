@@ -67,6 +67,11 @@ def proposal_list_view(request):
     proposals = Proposal.objects.filter(user=user)
     return render(request, 'Job/proposal_list.html', {'object_list': proposals})
 
+def proposal_by_job_list_view(request, slug):
+    job = Job.objects.get(slug=slug)
+    proposals = Proposal.objects.filter(job=job)
+    return render(request, 'Job/proposal_list.html', {'object_list': proposals})
+
 
 def proposal_delete_view(request, pk):
     proposal = Proposal.objects.get(pk=pk)
