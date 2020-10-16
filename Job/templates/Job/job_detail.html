@@ -26,7 +26,8 @@
                 <div class="p-4">
                     {% if user.is_authenticated %}
                         {% if job.church.user == user %}
-                            <a href="{% url 'job:proposals-by-job' slug=job.slug %}" class="btn btn-success btn-block mb-1" >See Proposals</a>
+                            <a href="{% url 'job:proposals-by-job' slug=job.slug %}" class="btn btn-success btn-block" >See Proposals</a>
+                            <a href="{% url 'job:edit-job' slug=job.slug %}" class="btn btn-success btn-block my-1" >Edit Task</a>
                             <form action="#">
                                 <button type="submit" class="btn btn-danger btn-block">Delete Task</button>
                             </form>
