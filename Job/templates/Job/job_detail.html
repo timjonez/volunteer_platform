@@ -48,10 +48,16 @@
                     <h4>{{ job.church.name }}</h4>
                     <h6>Pastor: {{ job.church.pastor_name }}</h6>
                     <h6>{{ job.church.phone }}</h6>
-                    <h6>{{ job.church.address.street_number }} {{ job.church.address.route }}</h6>
-                    <h6>{{ job.church.address.locality.name }}, {{ job.church.address.locality.state.name }}, {{ job.church.address.locality.postal_code }}</h6>
+                    {% if job.church.address.locality%}
+                        <h6>{{ job.church.address.street_number }} {{ job.church.address.route }}</h6>
+                        <h6>{{ job.church.address.locality.name }}, {{ job.church.address.locality.state.name }}, {{ job.church.address.locality.postal_code }}</h6>
+                    {% else %}
+                        <h6>{{ job.church.address }}</h6>
+                    {% endif %}
                     <div class="p-4">
+                        {% if job.church.picture %}
                         <img src="{{ job.church.picture.url }}" width="100%" alt="">
+                        {% endif %}
                     </div>
                 </div>
             </div>
