@@ -80,7 +80,8 @@ def proposal_by_job_list_view(request, slug):
 @login_required
 def proposal_edit_view(request, pk):
     proposal = Proposal.objects.get(pk=pk)
-    # if proposal.user.user == request.user:
+    if proposal.user.user != request.user:
+        return redirect('home')
     form = CreateProposalForm(request.POST or None, instance=proposal)
     if form.is_valid():
         form.save()
