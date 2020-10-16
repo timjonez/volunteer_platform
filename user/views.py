@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
@@ -25,3 +25,8 @@ def create_volunteer_view(request):
             volunteer.save()
             return redirect('home')
     return render(request, 'user/add_volunteer.html', {'form': form,})
+
+
+class VolunteerDetailView(DetailView):
+    model = Volunteer
+    slug_field = 'user__email'
