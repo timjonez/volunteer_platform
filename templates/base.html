@@ -27,6 +27,9 @@
               {% if user.is_authenticated %}
                 {% if user.role == "Church" %}
                   <li class="nav-item"></li>
+                    <a class="nav-link" href="{% url 'job:owner-job-list'%}">My Tasks</a>
+                  </li>
+                  <li class="nav-item"></li>
                     <a class="nav-link" href="{% url 'job:create_job'%}">Create Task</a>
                   </li>
                 {% elif user.role == "Volunteer" %}
