@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="col-8 mx-auto">
+        <h1 class="text-center mt-2 mb-4">My Tasks</h1>
+        <div class="list-all-box mt-4">
+            {% if not object_list %}
+                <div class="job-link py-5">
+                    <h4 class="text-center" >No tasks match your search...</h4>
+                </div>
+            {% endif %}
+            {% for job in object_list %}
+                <a href="{% url 'job:view_job' slug=job.slug%}" class="job-link">
+                    <div>
+                        <h1>{{job.title}}</h1>
+                        <p>{{job.body}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
