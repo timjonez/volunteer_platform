@@ -7,7 +7,9 @@
             <div class="row mx-auto pt-4">
                 <div class="col-lg-8 col-10 mx-auto">
                     <h4>{{proposal.job.title}}</h4>
-                    <h5>{{proposal.user.user.first_name}} {{proposal.user.user.last_name}}</h5>
+                    <a href="{% url 'user:see-profile' slug=proposal.user.user.email%}" class="link">
+                        <h5>{{proposal.user.user.first_name}} {{proposal.user.user.last_name}}</h5>
+                    </a>
                     <h5>Expected timeframe: {{proposal.timeframe }}</h5>
                     <h5>Submitted on: {{proposal.date_submitted}}</h5>
                 </div>
