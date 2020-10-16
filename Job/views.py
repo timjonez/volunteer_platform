@@ -93,7 +93,7 @@ def proposal_edit_view(request, pk):
 def proposal_delete_view(request, pk):
     proposal = Proposal.objects.get(pk=pk)
     proposal.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return redirect('job:proposals')
 
 
 @login_required
