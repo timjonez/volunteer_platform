@@ -13,7 +13,14 @@
                 <h4>{{ volunteer.user.first_name }} {{ volunteer.user.last_name }}</h4>
                 <h4>{{ volunteer.address.locality.name }}, {{ volunteer.address.locality.state.code }} </h4>
             </div>
-            <div class="col-6 border-left py-4">
+            <div class="col-6 border-left">
+                <div class="text-right">
+                    {% if volunteer.user == user %}
+                    <a href="{% url 'user:volunteer-edit' email=volunteer.user.email %}" class="btn btn-success">
+                        <i class="fas fa-pencil-alt fa-1x"> Edit</i>
+                    </a>
+                    {% endif %}
+                </div>
                 {{ volunteer.intro }}
             </div>
         </div>
