@@ -54,6 +54,17 @@ def owner_job_list_view(request):
         jobs = Job.objects.filter(church=church[0]).order_by('-created_date')
         return render(request, 'Job/owner_job_list.html', {'object_list': jobs})
 
+@login_required
+def job_edit_view(request, slug):
+    job = Job.objects.get(slug=slug)
+    if job.church.user != request.user:
+        return redirect('home')
+    form = CreateJobForm(request.POST or None, instance=job)
+    if form.is_valid():
+        form.save()
+        return redirect('job:view_job', slug=job.slug)
+    return render(request, 'Job/add_job.html', {'form': form})
+
 
 class JobDetailView(DetailView):
     model = Job
