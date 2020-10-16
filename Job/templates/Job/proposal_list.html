@@ -21,9 +21,17 @@
                             <h5>Rejected</h5>
                         {% endif %}
                     </div>
-                    <div class="col-2 text-center">
-                        <a href="{% url 'job:delete-proposal' pk=proposal.pk %}" class="btn btn-danger">Delete</a>
-                    </div>
+                    {% if proposal.job.church.user == user %}
+                        <div class="col-2">
+                            <a href="{% url 'job:manage-proposal' pk=proposal.pk %}?accept=True" class="btn btn-success btn-block mb-0">Accept</a>
+                            <a href="{% url 'job:manage-proposal' pk=proposal.pk %}?accept=False" class="btn btn-danger btn-block my-1">Refuse</a>
+                            <a href="{% url 'job:delete-proposal' pk=proposal.pk %}" class="btn btn-danger btn-block mt-0">Delete</a>
+                        </div>
+                    {% elif proposal.user.user == user %}
+                        <div class="col-2 my-auto">
+                            <a href="{% url 'job:delete-proposal' pk=proposal.pk %}" class="btn btn-danger btn-block">Delete</a>
+                        </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
