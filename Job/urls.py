@@ -9,6 +9,7 @@ urlpatterns = [
     path('proposals/', views.proposal_list_view, name='proposals'),
     path('<slug:slug>/proposals/', views.proposal_by_job_list_view, name='proposals-by-job'),
     path('manage/<pk>/', views.manage_proposal_view, name='manage-proposal'),
+    path('proposal/edit/<pk>/', views.proposal_edit_view, name='edit-proposal'),
     path('delete/<pk>/', views.proposal_delete_view, name='delete-proposal'),
     path('proposal-<pk>/', views.ProposalDetailView.as_view(), name='proposal'),
     path('saved/', views.saved_job_list_view, name='saved-jobs'),
