@@ -91,6 +91,7 @@ def saved_job_list_view(request):
     return render(request, 'Job/savedjob_list.html', {'object_list': jobs})
 
 
+@login_required
 def save_job_view(request, slug):
     user = Volunteer.objects.get(user_id__email=request.user)
     job = Job.objects.get(slug=slug)
