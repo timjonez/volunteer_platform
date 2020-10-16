@@ -16,7 +16,7 @@
                             <a href="{% url 'job:manage-proposal' pk=proposal.pk %}?accept=False" class="btn btn-danger btn-block mb-1">Refuse</a>
                             <a href="{% url 'job:manage-proposal' pk=proposal.pk %}?accept=True" class="btn btn-success btn-block">Accept</a>
                         {% else %}
-                            <a href="#" class="btn btn-warning btn-block mb-1">Edit</a>
+                            <a href="{% url 'job:edit-proposal' pk=proposal.pk %}" class="btn btn-warning btn-block mb-1">Edit</a>
                             <a href="{% url 'job:delete-proposal' pk=proposal.pk %}" class="btn btn-danger btn-block">Delete</a>
                         {% endif %} 
                 </div>
