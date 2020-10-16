@@ -5,6 +5,11 @@
 {% block body %}
     <div class="container row mx-auto">
         <div class="col-12 col-lg-8 shadow-container mx-auto px-0 mt-5 mb-3">
+            {% if not object_list %}
+                <div class="job-link py-5">
+                    <h4 class="text-center" >You don't have any proposals yet...</h4>
+                </div>
+            {% endif %}
             {% for proposal in object_list %}
                 <div class="normal-list row mx-auto">
                     <div class="col-10">
