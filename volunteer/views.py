@@ -9,7 +9,7 @@ def home_view(request):
     user = request.user
     if not request.user.is_authenticated:
         context = {
-            'object_list':Job.objects.all(),
+            'object_list':Job.objects.all().order_by('-created_date'),
             'categories': Category.objects.all()
         }
     else:
@@ -22,7 +22,7 @@ def home_view(request):
             if len(volunteer) == 0:
                 return redirect('user:volunteer')
         context = {
-            'object_list':Job.objects.all(),
+            'object_list':Job.objects.all().order_by('-created_date'),
             'categories': Category.objects.all()
             }
 
