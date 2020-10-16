@@ -107,3 +107,20 @@ def save_job_view(request, slug):
     saved_job.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
+@login_required
+def manage_proposal_view(request, pk):
+    proposal = Proposal.objects.get(pk=pk)
+    accept = request.GET.get('accept')
+    if proposal.job.church.user != request.user:
+        return redirect('home')
+    else:
+        if accept == "True":
+            print('accepted')
+            proposal.accepted = True
+            proposal.save()
+        elif accept == "False":
+            print('reject')
+            proposal.accepted = False
+            proposal.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
