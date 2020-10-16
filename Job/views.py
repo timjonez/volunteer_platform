@@ -77,6 +77,17 @@ def proposal_by_job_list_view(request, slug):
     else:
         return render(request, 'Job/proposal_list.html', {'object_list': proposals})
 
+@login_required
+def proposal_edit_view(request, pk):
+    proposal = Proposal.objects.get(pk=pk)
+    # if proposal.user.user == request.user:
+    form = CreateProposalForm(request.POST or None, instance=proposal)
+    if form.is_valid():
+        form.save()
+        return redirect('job:proposal', pk=proposal.pk)
+    return render(request, 'Job/add_proposal.html', {'form': form})
+
+
 
 @login_required
 def proposal_delete_view(request, pk):
