@@ -62,29 +62,37 @@ class ProposalDetailView(DetailView):
     model = Proposal
 
 
+@login_required
 def proposal_list_view(request):
     user = Volunteer.objects.get(user_id__email=request.user)
     proposals = Proposal.objects.filter(user=user)
     return render(request, 'Job/proposal_list.html', {'object_list': proposals})
 
+@login_required
 def proposal_by_job_list_view(request, slug):
     job = Job.objects.get(slug=slug)
     proposals = Proposal.objects.filter(job=job)
-    return render(request, 'Job/proposal_list.html', {'object_list': proposals})
+    if job.church.user != request.user:
+        return redirect('home')
+    else:
+        return render(request, 'Job/proposal_list.html', {'object_list': proposals})
 
 
+@login_required
 def proposal_delete_view(request, pk):
     proposal = Proposal.objects.get(pk=pk)
     proposal.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
 def savedjob_delete_view(request, pk):
     job = SavedJob.objects.get(pk=pk)
     job.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
 def saved_job_list_view(request):
     user = Volunteer.objects.get(user_id__email=request.user)
     jobs = SavedJob.objects.filter(user=user)
