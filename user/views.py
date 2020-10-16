@@ -30,3 +30,16 @@ def create_volunteer_view(request):
 class VolunteerDetailView(DetailView):
     model = Volunteer
     slug_field = 'user__email'
+
+@login_required
+def volunteer_edit_view(request, email):
+    user = Volunteer.objects.get(user__email=email)
+    print(user.user)
+    print(request.user)
+    if user.user != request.user:
+        return redirect('home')
+    form = CreateVolunteerForm(request.POST or None, instance=user)
+    if form.is_valid():
+        form.save()
+        return redirect('user:see-profile', slug=user.user.email)
+    return render(request, 'user/add_volunteer.html', {'form': form})
