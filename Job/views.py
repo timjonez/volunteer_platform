@@ -45,6 +45,15 @@ def create_proposal_view(request, slug):
             return redirect('home')
     return render(request, 'Job/add_proposal.html', {'form': form})
 
+@login_required
+def owner_job_list_view(request):
+    church = Church.objects.filter(user__email=request.user)
+    if church.count() == 0:
+        return redirect('home')
+    else:
+        jobs = Job.objects.filter(church=church[0]).order_by('-created_date')
+        return render(request, 'Job/owner_job_list.html', {'object_list': jobs})
+
 
 class JobDetailView(DetailView):
     model = Job
