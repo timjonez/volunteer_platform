@@ -26,28 +26,31 @@
           <ul class="navbar-nav ml-auto">
               {% if user.is_authenticated %}
                 {% if user.role == "Church" %}
-                  <li class="nav-item"></li>
+                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'job:owner-job-list'%}">My Tasks</a>
                   </li>
-                  <li class="nav-item"></li>
+                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'job:create_job'%}">Create Task</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'church:profile' email=user.email %}">Profile</a>
+                  </li>
                 {% elif user.role == "Volunteer" %}
-                  <li class="nav-item"></li>
+                  <li class="nav-item">
                       <a class="nav-link" href="{% url 'job:saved-jobs' %}">Saved Tasks</a>
                   </li>
-                  <li class="nav-item"></li>
+                  <li class="nav-item">
                       <a class="nav-link" href="{% url 'job:proposals' %}">My Proposals</a>
                   </li>
-                  <li class="nav-item"></li>
+                  <li class="nav-item">
                       <a class="nav-link" href="{% url 'user:see-profile' slug=user.email %}">My Profile</a>
                   </li>
                 {% endif%}
-                <li class="nav-item"></li>
+                <li class="nav-item">
                     <a class="nav-link" href="/user/logout/">Logout</a>
                 </li>
               {% else %}
-                <li class="nav-item"></li>
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'user:signup'%}">Sign Up</a>
                 </li>
                 <li class="nav-item">
