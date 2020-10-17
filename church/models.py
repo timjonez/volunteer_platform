@@ -2,6 +2,8 @@ from django.db import models
 from phone_field import PhoneField
 from address.models import AddressField
 from django.utils import timezone
+from django.utils.text import slugify
+from django.urls import reverse
 
 from user.models import User
 
@@ -16,6 +18,12 @@ class Church(models.Model):
     address = AddressField(on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
