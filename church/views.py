@@ -21,3 +21,8 @@ def create_church_view(request):
             church.save()
             return redirect('home')
     return render(request, 'church/add_church.html', {'form': form,})
+
+
+def church_detail_view(request, email):
+    church = Church.objects.get(user_id__email=email)
+    return render(request, 'church/church_detail.html', {'church':church,})
