@@ -4,6 +4,7 @@ from address.models import AddressField
 from django.utils import timezone
 from django.utils.text import slugify
 from django.urls import reverse
+from random import randint
 
 from user.models import User
 
@@ -24,6 +25,6 @@ class Church(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.name) + str(randint(1000, 1000000000))
         super().save(*args, **kwargs)
 
