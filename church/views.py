@@ -26,3 +26,15 @@ def create_church_view(request):
 def church_detail_view(request, email):
     church = Church.objects.get(user_id__email=email)
     return render(request, 'church/church_detail.html', {'church':church,})
+
+
+@login_required
+def church_edit_view(request, email):
+    church = Church.objects.get(user_id__email=email)
+    if church.user != request.user:
+        return redirect('home')
+    form = AddChurchForm(request.POST or None, instance=church)
+    if form.is_valid():
+        form.save()
+        return redirect('church:profile', email=church.user)
+    return render(request, 'church/add_church.html', {'form': form})
