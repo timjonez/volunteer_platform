@@ -16,6 +16,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
     role = models.CharField(choices=ROLE, max_length=12, default=WORKER)
+    attached_church = models.ForeignKey('church.Church', blank=True, null=True, on_delete=models.CASCADE, related_name='attached_church')
 
     REQUIRED_FIELDS = []
 
