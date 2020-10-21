@@ -25,6 +25,7 @@ class Church(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name) + str(randint(1000, 1000000000))
+        if not self.slug:
+            self.slug = slugify(self.name) + str(randint(1000, 1000000000))
         super().save(*args, **kwargs)
 
