@@ -32,9 +32,11 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'job:create_job'%}">Create Task</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'church:profile' slug=user.attached_church.slug %}">Profile</a>
-                  </li>
+                  {% if user.attached_church %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'church:profile' slug=user.attached_church.slug %}">Profile</a>
+                    </li>
+                  {% endif %}
                 {% elif user.role == "Volunteer" %}
                   <li class="nav-item">
                       <a class="nav-link" href="{% url 'job:saved-jobs' %}">Saved Tasks</a>
