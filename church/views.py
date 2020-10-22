@@ -4,11 +4,13 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import AddChurchForm
 from .models import Church
+from user.models import User
 
 
 @login_required
 def create_church_view(request):
     existing_churches = Church.objects.filter(user_id__email=request.user)
+    user = User.objects.get(email=request.user) 
     if len(existing_churches) != 0:
         return redirect('home')
     elif request.method == 'GET':
@@ -19,6 +21,8 @@ def create_church_view(request):
             church = form.save(commit=False)
             church.user = request.user
             church.save()
+            user.attached_church = church
+            user.save()
             return redirect('home')
     return render(request, 'church/add_church.html', {'form': form,})
 
