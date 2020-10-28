@@ -26,7 +26,7 @@
                 <a href="{% url 'job:view_job' slug=job.slug%}" class="job-link">
                     <div>
                         <h1>{{job.title}}</h1>
-                        <p>{{job.body}}</p>
+                        <p>{{job.body | truncatechars:170 }}</p>
                     </div>
                 </a>
             {% endfor %}
