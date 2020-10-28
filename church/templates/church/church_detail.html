@@ -5,9 +5,12 @@
     <div class="container pt-5">
         <div class="job-container row py-5 mx-auto">
             {% if church.picture %}
-            <div class="col-2 mx-auto text-center pr-0 mb-5">
-                <img src="{{ church.picture.url}}" width="100%" class="profile-pic" alt="">
-            </div>
+                <div class="col-2 mx-auto text-center pr-0 mb-5">
+                    <img src="{{ church.picture.url}}" width="100%" class="profile-pic" alt="">
+                </div>
+            {% else %}
+                <div class="col-2 mx-auto text-center pr-0 mb-5">
+                </div>
             {% endif %}
             <div class="col-4 pt-3 pl-0">
                 <h4>{{ church.name }}</h4>
