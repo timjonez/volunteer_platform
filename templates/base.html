@@ -11,57 +11,54 @@
     <link rel="stylesheet" href="{% static 'css/master.css'%}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/"><span class="alt-brand">Vol</span>task</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-              {% if user.is_authenticated %}
-                {% if user.role == "Church" %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'job:owner-job-list'%}">My Tasks</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'job:create_job'%}">Create Task</a>
-                  </li>
-                  {% if user.attached_church %}
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'church:profile' slug=user.attached_church.slug %}">Profile</a>
-                    </li>
-                  {% endif %}
-                {% elif user.role == "Volunteer" %}
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'job:saved-jobs' %}">Saved Tasks</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'job:proposals' %}">My Proposals</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{% url 'user:see-profile' slug=user.email %}">My Profile</a>
-                  </li>
-                {% endif%}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/"><span class="alt-brand">Vol</span>task</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            {% if user.role == "Church" %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'job:owner-job-list'%}">My Tasks</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'job:create_job'%}">Create Task</a>
+              </li>
+              {% if user.attached_church %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/logout/">Logout</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user:signup'%}">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/user/login/">Login</a>
+                  <a class="nav-link" href="{% url 'church:profile' slug=user.attached_church.slug %}">Profile</a>
                 </li>
               {% endif %}
+            {% elif user.role == "Volunteer" %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'job:saved-jobs' %}">Saved Tasks</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'job:proposals' %}">My Proposals</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'user:see-profile' slug=user.email %}">My Profile</a>
+              </li>
+            {% endif%}
+            <li class="nav-item">
+                <a class="nav-link" href="/user/logout/">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:signup'%}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user/login/">Login</a>
+            </li>
+          {% endif %}
         </ul>
-        </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
     {% block body %}
     {% endblock %}
 
